@@ -4,17 +4,17 @@ namespace WebApiClientForWcf.Controllers
 {
     public class WPFController : ApiController
     {
-        private ServiceRef.WcfServiceClient _proxy = new ServiceRef.WcfServiceClient();
+        private ServiceRef.WcfServiceClient proxy = new ServiceRef.WcfServiceClient();
         // GET api/WPF
         public IHttpActionResult GetValue()
         {
-            var data = _proxy.GetValue();
+            var data = proxy.GetValue();
             return Ok(data);
         }
 
         public IHttpActionResult GetValueWithId(int id)
         {
-            var data = _proxy.GetData(id);
+            var data = proxy.GetData(id);
             return Ok(data);
         }
     }
