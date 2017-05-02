@@ -25,6 +25,18 @@
   <wsdl:message name="IService1_DeleteFile_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteFileResponse" />
   </wsdl:message>
+  <wsdl:message name="IService1_Post_InputMessage">
+    <wsdl:part name="parameters" element="tns:Post" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Post_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PostResponse" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Put_InputMessage">
+    <wsdl:part name="parameters" element="tns:Put" />
+  </wsdl:message>
+  <wsdl:message name="IService1_Put_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PutResponse" />
+  </wsdl:message>
   <wsdl:portType name="IService1">
     <wsdl:operation name="GetAllFiles">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/GetAllFiles" message="tns:IService1_GetAllFiles_InputMessage" />
@@ -37,6 +49,14 @@
     <wsdl:operation name="DeleteFile">
       <wsdl:input wsaw:Action="http://tempuri.org/IService1/DeleteFile" message="tns:IService1_DeleteFile_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IService1/DeleteFileResponse" message="tns:IService1_DeleteFile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Post">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Post" message="tns:IService1_Post_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PostResponse" message="tns:IService1_Post_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Put">
+      <wsdl:input wsaw:Action="http://tempuri.org/IService1/Put" message="tns:IService1_Put_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IService1/PutResponse" message="tns:IService1_Put_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IService1" type="tns:IService1">
@@ -61,6 +81,24 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteFile">
       <soap:operation soapAction="http://tempuri.org/IService1/DeleteFile" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Post">
+      <soap:operation soapAction="http://tempuri.org/IService1/Post" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Put">
+      <soap:operation soapAction="http://tempuri.org/IService1/Put" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

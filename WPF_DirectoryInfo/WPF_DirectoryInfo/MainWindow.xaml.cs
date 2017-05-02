@@ -17,6 +17,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using System.Net.Http.Formatting;
+
 
 namespace WPF_DirectoryInfo
 {
@@ -38,32 +40,33 @@ namespace WPF_DirectoryInfo
             // listOfFiles.DataContext = data.Content.ReadAsStringAsync().Result;
 
            .ContinueWith(response =>
-            {
-                if (response.Exception != null)
-                {
-                    MessageBox.Show(response.Exception.Message);
-                }
-                else
-                {
-                    System.Threading.Thread.Sleep(2000);
-                    HttpResponseMessage message = response.Result;
-                    string responseText = message.Content.ReadAsStringAsync().Result;
+           {
+               if (response.Exception != null)
+               {
+                   MessageBox.Show(response.Exception.Message);
+               }
+               else
+               {
+                  // System.Threading.Thread.Sleep(2000);
+                   HttpResponseMessage message = response.Result;
+                   string responseText = message.Content.ReadAsStringAsync().Result;
 
-                    // converts Json into CS //
-                    JavaScriptSerializer jss = new JavaScriptSerializer();
-                    ObservableCollection<string> files = jss.Deserialize<ObservableCollection<string>>(responseText);
+                   // converts Json into CS //
+                   JavaScriptSerializer jss = new JavaScriptSerializer();
+                   ObservableCollection<string> files = jss.Deserialize<ObservableCollection<string>>(responseText);
 
-                    Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-                        (Action)(() => {
-                            listOfFiles.DataContext = files;
+                   Dispatcher.BeginInvoke(DispatcherPriority.Normal,
+                       (Action)(() =>
+                       {
+                           listOfFiles.DataContext = files;
 
-                            Binding binding = new Binding();
-                            listOfFiles.SetBinding(ItemsControl.ItemsSourceProperty, binding);
+                           Binding binding = new Binding();
+                           listOfFiles.SetBinding(ItemsControl.ItemsSourceProperty, binding);
 
-                            (listOfFiles.ItemsSource as ObservableCollection<string>).RemoveAt(0);
-                        }));
-                }
-            });
+                           (listOfFiles.ItemsSource as ObservableCollection<string>).RemoveAt(0);
+                       }));
+               }
+           });
         }
 
         private async void buttonGetByName_Click(object sender, RoutedEventArgs e)
@@ -86,6 +89,58 @@ namespace WPF_DirectoryInfo
         private void selectionEvent(object sender, SelectionChangedEventArgs e)
         {
             textBoxFileName.Text = listOfFiles.SelectedItem.ToString();
+        }
+
+        private void Createnew_Click(object sender, RoutedEventArgs e)
+        {
+            if (invisibPanel.Visibility == Visibility.Collapsed)
+                invisibPanel.Visibility = Visibility.Visible;
+            textBoxFileContent.Text = null;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (NewFile_Name_TextBox != null)
+            {
+                string uri = string.Format("http://localhost:12784/api/Webapi?name={0}", Uri.EscapeDataString(NewFile_Name_TextBox.Text));
+                HttpClient client = new HttpClient();
+                client.PostAsync(uri, textBoxFileContent.Text, new JsonMediaTypeFormatter())
+                    .ContinueWith(response =>
+                    {
+                        if (response.Exception != null)
+                        {
+                            MessageBox.Show(response.Exception.Message);
+                        }
+                        else
+                        {
+                            MessageBox.Show("File successfully created");
+                        }
+                    });
+            }
+
+        }
+
+        private void UpdateFile_Click(object sender, RoutedEventArgs e)
+        {
+            if (textBoxFileName.Text != null && listOfFiles.SelectedItems != null)
+            {
+                string uri = string.Format("http://localhost:12784/api/Webapi?name={0}", Uri.EscapeDataString(textBoxFileName.Text));
+                HttpClient client = new HttpClient();
+                client.PutAsync(uri, textBoxFileContent.Text, new JsonMediaTypeFormatter())
+                    .ContinueWith(response =>
+                    {
+                        if (response.Exception != null)
+                        {
+                            MessageBox.Show(response.Exception.Message);
+                        }
+                        else
+                        {
+                            MessageBox.Show("File successfully updated");
+                        }
+                    });
+
+
+            }
         }
     }
 }

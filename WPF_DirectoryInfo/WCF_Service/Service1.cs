@@ -39,5 +39,25 @@ namespace WCF_Service
             }            
 
         }
+
+        public void Post(string name, string content)
+        {
+            string uri = @"C:\Testing";
+            string path = Path.Combine(uri, name);
+            File.Create(path);
+            StreamWriter sw = new StreamWriter(path);
+            sw.Write(content);
+
+        }
+
+        public void Put(string name, string content)
+        {
+            string uri = @"C:\Testing";
+            string path = Path.Combine(uri, name);
+            StreamWriter sw = new StreamWriter(path);
+            sw.Write(content);
+            sw.Close();
+
+        }
     }
 }

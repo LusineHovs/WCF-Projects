@@ -20,6 +20,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="40" />
             <RowDefinition Height="40" />
+
             <RowDefinition Height="170*" />
         </Grid.RowDefinitions>
 
@@ -40,18 +41,25 @@
             <Button Content="Open File Content " Name="buttonGetByName" VerticalAlignment="Center" Padding="2" Margin="15, 0, 0, 0" Click="buttonGetByName_Click" ></Button>
         </StackPanel>
 
-        <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"> File Name</TextBlock>
-        <TextBlock Grid.Column="0" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20"> Content</TextBlock>
+        <TextBlock Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="25,8,25,6"> File Name</TextBlock>
 
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="3">
-            <Button Content="Update File Content" Name="UpdateFile" Padding="2" VerticalAlignment="Center" Margin="0, 0, 0, 0"></Button>
+            <Button Content="Update File Content" Name="UpdateFile" Padding="2" VerticalAlignment="Center" Margin="0, 0, 0, 0" Click="UpdateFile_Click"></Button>
             <Button Content="Delete File" Name="Delete" Padding="2" VerticalAlignment="Center" Margin="10, 0, 0, 0" Click="Delete_Click" ></Button>
-            <Button Content="Create New File" Name="Createnew" Padding="2" VerticalAlignment="Center" Margin="10, 0, 0, 0"></Button>
+            <Button Content="Create New File" Name="Createnew" Padding="2" VerticalAlignment="Center" Margin="10, 0, 0, 0" Click="Createnew_Click"></Button>
 
         </StackPanel>
+        <TextBlock Grid.Column="0" Grid.Row="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="20" Margin="34,54,34,56"> Content</TextBlock>
 
-        <TextBox Name="textBoxFileContent" TextWrapping="Wrap" Grid.Column="1" Grid.Row="4" Background="Beige" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Margin="3"></TextBox>
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Grid.Row="3">
+            <TextBox Name="textBoxFileContent" TextWrapping="Wrap" Grid.Column="1" Grid.Row="4" Background="Beige" Width="150"  Margin="10 0 10 0" ></TextBox>
+            <StackPanel  Name="invisibPanel" Grid.Column="1" Visibility="Collapsed">
+                <TextBlock Margin="5, 5" Padding="3" FontSize="13" FontWeight="Bold" HorizontalAlignment="Center" >Name of new file</TextBlock>
+                <TextBox Name ="NewFile_Name_TextBox" Margin="5, 5" Padding="3" Width="180"></TextBox>
+                <Button Margin="5, 5" Padding="3" FontSize="13" Click="Button_Click" >Create</Button>
+            </StackPanel>
+        </StackPanel>
 
 
     </Grid>

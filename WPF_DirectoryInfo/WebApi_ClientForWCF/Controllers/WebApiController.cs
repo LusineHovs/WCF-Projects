@@ -9,7 +9,7 @@ namespace WebApi_ClientForWCF.Controllers
 {
     public class WebApiController : ApiController
     {
-        private ServiceReference1.Service1Client proxy = new ServiceReference1.Service1Client();
+        private ServiceReference2.Service1Client proxy = new ServiceReference2.Service1Client();
 
         public IHttpActionResult Get()
         {
@@ -32,6 +32,16 @@ namespace WebApi_ClientForWCF.Controllers
         {
             proxy.DeleteFile(filename);
 
+        }
+
+        public void Post([FromUri]string name, [FromBody]string content)
+        {
+            proxy.Post(name, content);
+        }
+
+        public void Put([FromUri]string name, [FromBody]string content)
+        {
+            proxy.Put(name, content);
         }
     }
 }

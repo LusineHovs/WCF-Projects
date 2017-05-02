@@ -8,11 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApi_ClientForWCF.ServiceReference1 {
+namespace WebApi_ClientForWCF.ServiceReference2 {
     
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference1.IService1")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServiceReference2.IService1")]
     public interface IService1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/GetAllFiles", ReplyAction="http://tempuri.org/IService1/GetAllFilesResponse")]
@@ -32,15 +32,27 @@ namespace WebApi_ClientForWCF.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/DeleteFile", ReplyAction="http://tempuri.org/IService1/DeleteFileResponse")]
         System.Threading.Tasks.Task DeleteFileAsync(string fileName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Post", ReplyAction="http://tempuri.org/IService1/PostResponse")]
+        void Post(string name, string content);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Post", ReplyAction="http://tempuri.org/IService1/PostResponse")]
+        System.Threading.Tasks.Task PostAsync(string name, string content);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Put", ReplyAction="http://tempuri.org/IService1/PutResponse")]
+        void Put(string name, string content);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Put", ReplyAction="http://tempuri.org/IService1/PutResponse")]
+        System.Threading.Tasks.Task PutAsync(string name, string content);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IService1Channel : WebApi_ClientForWCF.ServiceReference1.IService1, System.ServiceModel.IClientChannel {
+    public interface IService1Channel : WebApi_ClientForWCF.ServiceReference2.IService1, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class Service1Client : System.ServiceModel.ClientBase<WebApi_ClientForWCF.ServiceReference1.IService1>, WebApi_ClientForWCF.ServiceReference1.IService1 {
+    public partial class Service1Client : System.ServiceModel.ClientBase<WebApi_ClientForWCF.ServiceReference2.IService1>, WebApi_ClientForWCF.ServiceReference2.IService1 {
         
         public Service1Client() {
         }
@@ -83,6 +95,22 @@ namespace WebApi_ClientForWCF.ServiceReference1 {
         
         public System.Threading.Tasks.Task DeleteFileAsync(string fileName) {
             return base.Channel.DeleteFileAsync(fileName);
+        }
+        
+        public void Post(string name, string content) {
+            base.Channel.Post(name, content);
+        }
+        
+        public System.Threading.Tasks.Task PostAsync(string name, string content) {
+            return base.Channel.PostAsync(name, content);
+        }
+        
+        public void Put(string name, string content) {
+            base.Channel.Put(name, content);
+        }
+        
+        public System.Threading.Tasks.Task PutAsync(string name, string content) {
+            return base.Channel.PutAsync(name, content);
         }
     }
 }

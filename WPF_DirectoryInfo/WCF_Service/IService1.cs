@@ -20,8 +20,12 @@ namespace WCF_Service
         [OperationContract]
         void DeleteFile(string fileName);
 
+        [OperationContract]
+        void Post(string name, string content);
+
+        [OperationContract]
+        void Put(string name, string content);
 
 
-   
     }
 }
