@@ -27,6 +27,7 @@ namespace WPF_DirectoryInfo
     /// </summary>
     public partial class MainWindow : Window
     {
+        ObservableCollection<string> files;
         public MainWindow()
         {
             InitializeComponent();
@@ -47,13 +48,13 @@ namespace WPF_DirectoryInfo
                }
                else
                {
-                  // System.Threading.Thread.Sleep(2000);
+                   // System.Threading.Thread.Sleep(2000);
                    HttpResponseMessage message = response.Result;
                    string responseText = message.Content.ReadAsStringAsync().Result;
 
                    // converts Json into CS //
                    JavaScriptSerializer jss = new JavaScriptSerializer();
-                   ObservableCollection<string> files = jss.Deserialize<ObservableCollection<string>>(responseText);
+                   files = jss.Deserialize<ObservableCollection<string>>(responseText);
 
                    Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                        (Action)(() =>
@@ -81,14 +82,29 @@ namespace WPF_DirectoryInfo
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            string uri = string.Format("http://localhost:12784/api/webapi?name={0}", Uri.EscapeDataString(textBoxFileName.Text));
-            HttpClient client = new HttpClient();
-            client.DeleteAsync(uri);
+            
+            if (listOfFiles.SelectedItem != null)
+            {
+                string uri = string.Format("http://localhost:12784/api/webapi?filename=C:\\Testing\\{0}", Uri.EscapeDataString(textBoxFileName.Text));
+                HttpClient client = new HttpClient();
+                client.DeleteAsync(uri);
+                
+                if (files != null)
+                {
+                    files.RemoveAt(files.IndexOf(listOfFiles.SelectedItem.ToString()));
+                    textBoxFileContent.Text = null;
+                }
+            }
+
         }
 
         private void selectionEvent(object sender, SelectionChangedEventArgs e)
         {
-            textBoxFileName.Text = listOfFiles.SelectedItem.ToString();
+            if (listOfFiles.SelectedItem!=null)
+            {
+                textBoxFileName.Text = listOfFiles.SelectedItem.ToString();
+            }
+
         }
 
         private void Createnew_Click(object sender, RoutedEventArgs e)
@@ -102,7 +118,7 @@ namespace WPF_DirectoryInfo
         {
             if (NewFile_Name_TextBox != null)
             {
-                string uri = string.Format("http://localhost:12784/api/Webapi?name={0}", Uri.EscapeDataString(NewFile_Name_TextBox.Text));
+                string uri = string.Format("http://localhost:12784/api/Webapi?name=C:\\Testing\\{0}", Uri.EscapeDataString(NewFile_Name_TextBox.Text));
                 HttpClient client = new HttpClient();
                 client.PostAsync(uri, textBoxFileContent.Text, new JsonMediaTypeFormatter())
                     .ContinueWith(response =>

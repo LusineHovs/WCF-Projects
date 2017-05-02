@@ -29,24 +29,22 @@ namespace WCF_Service
 
         public void DeleteFile(string fileName)
         {
-            string[] files = Directory.GetFiles(@"C:\Testing");
+            string[] files = Directory.GetFiles(@"C:\Testing\");
             foreach (var file in files)
             {
-                if (fileName==file)
-                {
+                if (fileName == file)
                     File.Delete(file);
-                }
-            }            
-
+            }
         }
 
         public void Post(string name, string content)
         {
             string uri = @"C:\Testing";
             string path = Path.Combine(uri, name);
-            File.Create(path);
+            //File.Create(path);
             StreamWriter sw = new StreamWriter(path);
             sw.Write(content);
+            sw.Close();
 
         }
 

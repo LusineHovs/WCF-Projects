@@ -7,6 +7,7 @@ using System.Web.Http;
 
 namespace WebApi_ClientForWCF.Controllers
 {
+
     public class WebApiController : ApiController
     {
         private ServiceReference2.Service1Client proxy = new ServiceReference2.Service1Client();
@@ -28,9 +29,11 @@ namespace WebApi_ClientForWCF.Controllers
 
 
         // DELETE: api/WebApi/5
-        public void Delete(string filename)
+       
+        public IHttpActionResult Delete([FromUri]string filename)
         {
             proxy.DeleteFile(filename);
+            return Ok();
 
         }
 
