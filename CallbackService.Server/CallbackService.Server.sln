@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallbackService.Server", "CallbackService.Server\CallbackService.Server.csproj", "{AD609EA7-9917-4E89-8D75-A5FA110D0064}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CallbackService.Client", "CallbackService.Client\CallbackService.Client.csproj", "{3D40DD1C-4DB6-4759-BFBD-F57772A50570}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD609EA7-9917-4E89-8D75-A5FA110D0064}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD609EA7-9917-4E89-8D75-A5FA110D0064}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD609EA7-9917-4E89-8D75-A5FA110D0064}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD609EA7-9917-4E89-8D75-A5FA110D0064}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D40DD1C-4DB6-4759-BFBD-F57772A50570}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D40DD1C-4DB6-4759-BFBD-F57772A50570}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D40DD1C-4DB6-4759-BFBD-F57772A50570}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D40DD1C-4DB6-4759-BFBD-F57772A50570}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

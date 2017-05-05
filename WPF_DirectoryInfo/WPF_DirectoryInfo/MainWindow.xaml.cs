@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Net.Http.Formatting;
+using Newtonsoft.Json;
 
 
 namespace WPF_DirectoryInfo
@@ -140,7 +141,7 @@ namespace WPF_DirectoryInfo
         {
             if (textBoxFileName.Text != null && listOfFiles.SelectedItems != null)
             {
-                string uri = string.Format("http://localhost:12784/api/Webapi?name={0}", Uri.EscapeDataString(textBoxFileName.Text));
+                string uri = string.Format("http://localhost:12784/api/Webapi?name=C:\\Testing\\{0}", Uri.EscapeDataString(textBoxFileName.Text));
                 HttpClient client = new HttpClient();
                 client.PutAsync(uri, textBoxFileContent.Text, new JsonMediaTypeFormatter())
                     .ContinueWith(response =>
